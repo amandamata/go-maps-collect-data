@@ -78,10 +78,10 @@ func main() {
 			stateName := element.Tags.Name
 			if stateCode != "" && stateName != "" {
 				fmt.Printf("  Found state: %s (%s)\n", stateName, stateCode)
-				cityQuery := fmt.Sprintf(`[out:json];area["ISO3166-2"="%s"][admin_level=4];(node["place"~"city|town|village|hamlet|suburb|neighbourhood"](area););out body;`, stateCode)
+				cityQuery := fmt.Sprintf(`[out:json];area["ISO3166-2"="%s"][admin_level=4];(node["place"~"city|town|village"](area););out body;`, stateCode)
 				encodedCityQuery := url.QueryEscape(cityQuery)
-				cityAPIURL := fmt.Sprintf("http://overpass-api.de/api/interpreter?data=%s", encodedCityQuery)
-				cityResp, err := http.Get(cityAPIURL)
+				cityURL := fmt.Sprintf("http://overpass-api.de/api/interpreter?data=%s", encodedCityQuery)
+				cityResp, err := http.Get(cityURL)
 				if err != nil {
 					fmt.Println("Error fetching cities for state:", stateName, err)
 					continue
