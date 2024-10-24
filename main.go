@@ -28,7 +28,10 @@ type OverpassResponse struct {
 }
 
 func main() {
-	translateCities()
+	// collectStates()
+	// translateStates()
+	// collectCities()
+	// translateCities()
 }
 
 func collectStates() {
